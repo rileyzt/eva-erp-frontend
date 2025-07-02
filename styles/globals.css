@@ -1,0 +1,208 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+
+  html,
+  body {
+    @apply h-full overflow-hidden;
+  }
+
+  body {
+    @apply bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+      sans-serif;
+  }
+}
+
+@layer components {
+  /* Glass Background Utilities */
+  .bg-glass-50 {
+    background-color: rgba(255, 255, 255, 0.03);
+  }
+
+  .bg-glass-100 {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .bg-glass-200 {
+    background-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .bg-glass-300 {
+    background-color: rgba(255, 255, 255, 0.16);
+  }
+
+  /* Glass Border Utilities */
+  .border-glass-200 {
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .border-glass-300 {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  /* Glass Hover States */
+  .hover\:bg-glass-100:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .hover\:bg-glass-200:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  /* Glass Panel Components */
+  .glass-panel {
+    background-color: rgba(30, 30, 30, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  }
+
+  .glass-button {
+    background-color: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .glass-button:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  }
+
+  .glass-button:active {
+    transform: scale(0.98);
+  }
+
+  .glass-input {
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .glass-input:focus {
+    border-color: rgba(255, 255, 255, 0.25);
+    background-color: rgba(255, 255, 255, 0.08);
+    outline: none;
+  }
+
+  .message-user {
+    @apply bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-md border border-blue-500/30 rounded-2xl;
+  }
+
+  .message-assistant {
+    background-color: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+  }
+
+  .scrollbar-glass::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  .scrollbar-glass::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 9999px;
+  }
+
+  .scrollbar-glass::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.12);
+    border-radius: 9999px;
+  }
+
+  .scrollbar-glass::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.16);
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+  }
+
+  .border-glow {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+}
+
+/* Animations */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Code syntax highlighting */
+.code-block {
+  @apply bg-dark-800 border border-glass-200 rounded-lg p-4 font-mono text-sm;
+}
+
+.code-block pre {
+  @apply overflow-x-auto scrollbar-glass;
+}
+
+/* Custom selection */
+::selection {
+  @apply bg-blue-500/30;
+}
+
+/* Loading dots */
+.loading-dots {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.loading-dots span {
+  @apply w-2 h-2 bg-gray-400 rounded-full;
+  animation: loading-bounce 1.4s infinite ease-in-out both;
+}
+
+.loading-dots span:nth-child(1) {
+  animation-delay: -0.32s;
+}
+.loading-dots span:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes loading-bounce {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
