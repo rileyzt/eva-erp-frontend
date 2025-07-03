@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
 const ExportModal = ({ isOpen, onClose, conversationId, onExport }) => {
   const [exportFormat, setExportFormat] = useState('pdf')
@@ -16,7 +17,8 @@ const ExportModal = ({ isOpen, onClose, conversationId, onExport }) => {
 
   const fetchMetadata = async () => {
     try {
-      const response = await fetch(`/api/export?conversationId=${conversationId}`)
+      const response = await fetch(`${backendUrl}/export?conversationId=${conversationId}`);
+
       if (response.ok) {
         const data = await response.json()
         setMetadata(data)
@@ -32,7 +34,8 @@ const ExportModal = ({ isOpen, onClose, conversationId, onExport }) => {
 
     setIsExporting(true)
     try {
-      const response = await fetch('/api/export', {
+      const response = await fetch(`${backendUrl}/export`, {
+
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

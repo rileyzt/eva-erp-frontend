@@ -551,7 +551,9 @@ const sendMessage = async () => {
     
     console.log('📦 Request payload:', requestBody);
     
-    const response = await fetch("https://eva-erp-backend.onrender.com/chat", {
+    const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+
+    const response = await fetch(`${backendUrl}/chat`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -677,7 +679,8 @@ const sendMessage = async () => {
         const formData = new FormData();
         formData.append('file', file);
         
-        const response = await fetch('/api/upload', {
+        
+        const response = await fetch(`${backendUrl}/upload`, {
           method: 'POST',
           body: formData,
         });
